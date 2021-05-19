@@ -1,0 +1,10 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane # L4LB (kind-control-plane)
+- role: worker # client (kind-worker)
+- role: worker # nginx backend (kind-worker2)
+- role: worker # nginx backend (kind-worker3)
+networking:
+  disableDefaultCNI: true
+  kubeProxyMode: none
