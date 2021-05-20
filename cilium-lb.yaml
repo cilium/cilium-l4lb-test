@@ -137,7 +137,6 @@ spec:
         - mountPath: /tmp/cilium/config-map
           name: cilium-config-path
           readOnly: true
-          # Needed to be able to load kernel modules
         - mountPath: /lib/modules
           name: lib-modules
           readOnly: true
@@ -188,21 +187,17 @@ spec:
       tolerations:
       - operator: Exists
       volumes:
-        # To keep state between restarts / upgrades
       - hostPath:
           path: /var/run/cilium
           type: DirectoryOrCreate
         name: cilium-run
-        # To keep state between restarts / upgrades for bpf maps
       - hostPath:
           path: /sys/fs/bpf
           type: DirectoryOrCreate
         name: bpf-maps
-        # To be able to load kernel modules
       - hostPath:
           path: /lib/modules
         name: lib-modules
-        # To read the clustermesh configuration
       - configMap:
           name: cilium-config
         name: cilium-config-path
