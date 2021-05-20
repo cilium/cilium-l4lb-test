@@ -120,7 +120,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: "quay.io/isovalent/cilium-dev:brb-lb-only"
+        image: "quay.io/cilium/cilium-ci:latest"
         imagePullPolicy: IfNotPresent
         name: cilium-agent
         securityContext:
@@ -164,7 +164,7 @@ spec:
               key: wait-bpf-mount
               name: cilium-config
               optional: true
-        image: "quay.io/isovalent/cilium-dev:brb-lb-only"
+        image: "quay.io/cilium/cilium-ci:latest"
         imagePullPolicy: IfNotPresent
         name: clean-cilium-state
         securityContext:
