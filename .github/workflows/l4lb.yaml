@@ -37,9 +37,4 @@ jobs:
 
       - name: Run tests
         run: |
-          ssh default ls -al
-          ssh default sudo ls -al /vagrant
-          ssh default sudo -E ls -al
-          ssh default sudo pwd
-          ssh default sudo -E pwd
-          ssh default sudo sh /vagrant/run.sh
+          ssh default sudo /bin/sh -c 'cd /vagrant && ./run.sh'
