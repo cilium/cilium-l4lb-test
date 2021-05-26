@@ -15,9 +15,13 @@ data:
   bpf-lb-acceleration: "native"
   enable-health-check-nodeport: "false"
   node-port-bind-protection: "false"
+  enable-host-reachable-services: "false"
 
   enable-ipv4: "true"
   enable-ipv6: "false"
+
+  enable-hubble: "true"
+  enable-recorder: "true"
 
   debug: "false"
   enable-l7-proxy: "false"
@@ -28,7 +32,6 @@ data:
   auto-direct-node-routes: "false"
   enable-bandwidth-manager: "false"
   enable-local-redirect-policy: "false"
-  enable-hubble: "false"
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -120,7 +123,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: "quay.io/cilium/cilium-ci:latest"
+        image: "quay.io/isovalent/cilium-dev:brb-lb-only-v1"
         imagePullPolicy: IfNotPresent
         name: cilium-agent
         securityContext:
@@ -163,7 +166,7 @@ spec:
               key: wait-bpf-mount
               name: cilium-config
               optional: true
-        image: "quay.io/cilium/cilium-ci:latest"
+        image: "quay.io/isovalent/cilium-dev:brb-lb-only-v1"
         imagePullPolicy: IfNotPresent
         name: clean-cilium-state
         securityContext:
