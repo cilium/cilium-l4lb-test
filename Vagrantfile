@@ -24,6 +24,9 @@ Vagrant.configure("2") do |config|
     # So we need to install Docker 20.10 (or later) from the upstream.
     curl -fsSL https://get.docker.com | sh
     systemctl enable --now docker
+    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.0/kind-linux-amd64
+    chmod +x ./kind
+    mv ./kind /usr/local/bin
     SHELL
   end
 end
