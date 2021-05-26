@@ -39,4 +39,7 @@ jobs:
         run: |
           ssh default ls -al
           ssh default sudo ls -al
-          ssh default sudo sh /Users/runner/work/cilium-l4lb-test/cilium-l4lb-test/run.sh
+          ssh default sudo -E ls -al
+          ssh default sudo pwd
+          ssh default sudo -E pwd
+          ssh default sudo -E sh run.sh
