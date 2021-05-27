@@ -22,7 +22,7 @@ nsenter -t $(docker inspect kind-worker2 -f '{{ .State.Pid }}') -n /bin/sh -c \
     'tc qdisc add dev eth0 clsact && tc filter add dev eth0 ingress bpf direct-action object-file ./test_tc_tunnel.o section decap && ip a a dev eth0 2.2.2.2/32'
 
 CILIUM_POD_NAME=$(kubectl -n kube-system get pod -l k8s-app=cilium -o=jsonpath='{.items[0].metadata.name}')
-kubectl -n kube-system wait --for=condition=Ready pod "$CILIUM_POD_NAME"
+kubectl -n kube-system wait --for=condition=Ready pod "$CILIUM_POD_NAME" --timeout=5m
 kubectl -n kube-system exec $CILIUM_POD_NAME -- \
     cilium service update --id 1 --frontend "2.2.2.2:80" --backends "${WORKER2_IP}:80" --k8s-node-port
 
