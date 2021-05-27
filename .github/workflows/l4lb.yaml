@@ -23,10 +23,6 @@ jobs:
         run: |
           # Retry if it fails (download.fedoraproject.org returns 404 sometimes)
           # Spend up to 10 seconds on this
-          echo "FOOOOOOOO"
-          ls -al
-          pwd
-          echo "BAAAAAAAR"
           for i in {1..4}; do
             if vagrant up; then
               break
@@ -37,6 +33,4 @@ jobs:
 
       - name: Run tests
         run: |
-          ssh default sudo /bin/sh -c 'cd /vagrant && pwd'
-          ssh default sudo /bin/sh -c 'cd /vagrant && ls -al'
-          ssh default sudo /bin/sh -c 'cd /vagrant && ./run.sh'
+          ssh default "sudo /bin/sh -c 'cd /vagrant && ./run.sh'"
