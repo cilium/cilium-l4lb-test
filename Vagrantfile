@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "install-packages", type: "shell", run: "once" do |sh|
     sh.inline = <<~SHELL
     set -eux -o pipefail
-    dnf install -y golang-go make kubernetes-client clang llvm glibc-devel.i686 kernel-devel kernel-headers libbpf libbpf-devel ethtool
+    dnf install -y make kubernetes-client clang llvm glibc-devel.i686 libbpf-devel ethtool
 
     # The moby-engine package (v19.03) included in Fedora 34 does not support cgroup v2.
     # So we need to install Docker 20.10 (or later) from the upstream.
